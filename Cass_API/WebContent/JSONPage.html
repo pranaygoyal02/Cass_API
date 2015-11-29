@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<p id="demo"></p>
+<script>
+function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+var employees = [{"product_id":"103","product_name":"Nike AirMax"},{"product_id":"100","product_name":"Nike AirMax"}]
+document.getElementById("demo").innerHTML = 
+employees[0].product_id + " " + employees[0].product_name;
+
+document.getElementById("demo").innerHTML =
+employees[1].product_id + " " + employees[1].product_name;
+
+var obj = JSON.parse(text);
+
+document.getElementById("demo").innerHTML = httpGetAsync("http://localhost:8080/CassAPI/rest/images/view?prod_name=Nike AirMax",callback)
+obj.100 + "<br>" +
+obj.103 + "<br>" ;
+
+</script>
+<!--<button type="button"
+onclick="document.getElementById('demo').innerHTML = 'Hello JavaScript!'">Click Me!</button>-->
+
+
+</body>
+</html>
